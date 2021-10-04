@@ -23,6 +23,12 @@ public class CreditarRequest {
     public CreditarRequest() {
     }
 
+    public CreditarRequest(String numeroConta, String idCliente, BigDecimal valor) {
+        this.numeroConta = numeroConta;
+        this.idCliente = idCliente;
+        this.valor = valor;
+    }
+
     public String getNumeroConta() {
         return numeroConta;
     }

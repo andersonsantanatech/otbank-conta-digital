@@ -24,6 +24,12 @@ public class Conta {
     @Deprecated
     public Conta() { }
 
+    public Conta(String numeroConta, UUID idCliente, BigDecimal saldo) {
+        this.numeroConta = numeroConta;
+        this.idCliente = idCliente;
+        this.saldo = saldo;
+    }
+
     public void creditar(BigDecimal valor) {
         if (valor.doubleValue() <= 0) {
             return;

@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/creditar")
 public class CreditarController {
 
-    private GerarContaService gerarContaService;
+
     private ContaRepository repository;
 
-    public CreditarController(GerarContaService gerarContaService, ContaRepository contaRepository) {
-        this.gerarContaService = gerarContaService;
+    public CreditarController(ContaRepository contaRepository) {
         this.repository = contaRepository;
     }
 
@@ -28,4 +29,6 @@ public class CreditarController {
 
         return ResponseEntity.ok(new CreditarResponse(conta.getSaldo()));
     }
+
+
 }
