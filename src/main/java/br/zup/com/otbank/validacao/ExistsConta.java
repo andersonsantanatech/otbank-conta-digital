@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Constraint(validatedBy = ExistsContaValidator.class)
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Target({ ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExistsConta {
     //Spring não retorna mensagem que esta no resources -> messages.properties
