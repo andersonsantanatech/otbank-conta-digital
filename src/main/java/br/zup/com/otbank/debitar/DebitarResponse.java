@@ -1,12 +1,12 @@
-package br.zup.com.otbank.creditar;
+package br.zup.com.otbank.debitar;
 
 import java.math.BigDecimal;
 
-public class CreditarResponse {
+public class DebitarResponse {
 
     private BigDecimal saldo;
 
-    public CreditarResponse(BigDecimal saldo) {
+    public DebitarResponse(BigDecimal saldo) {
         this.saldo = saldo;
     }
 

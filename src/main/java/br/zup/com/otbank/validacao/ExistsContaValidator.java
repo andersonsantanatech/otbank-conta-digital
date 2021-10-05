@@ -1,6 +1,7 @@
 package br.zup.com.otbank.validacao;
 
-import br.zup.com.otbank.creditar.ContaRepository;
+import br.zup.com.otbank.ContaRepository;
+import br.zup.com.otbank.TransacaoRequest;
 import br.zup.com.otbank.creditar.CreditarRequest;
 import br.zup.com.otbank.exception.UnprocessableContaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.UUID;
 
-public class ExistsContaValidator implements ConstraintValidator<ExistsConta, CreditarRequest> {
+public class ExistsContaValidator implements ConstraintValidator<ExistsConta, TransacaoRequest> {
 
     @Autowired
     private ContaRepository repository;
@@ -19,7 +20,7 @@ public class ExistsContaValidator implements ConstraintValidator<ExistsConta, Cr
     private String field;
 
     @Override
-    public boolean isValid(CreditarRequest value, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(TransacaoRequest value, ConstraintValidatorContext constraintValidatorContext) {
         if (value == null) {
             return true;
         }

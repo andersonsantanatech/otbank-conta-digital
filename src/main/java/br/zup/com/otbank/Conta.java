@@ -38,6 +38,13 @@ public class Conta {
         this.saldo = this.saldo.add(valor);
     }
 
+    public void debitar(BigDecimal valor) {
+        if (valor.doubleValue() <= 0 || valor.doubleValue() >= this.saldo.doubleValue()) {
+            return;
+        }
+        this.saldo = this.saldo.subtract(valor);
+    }
+
     public BigDecimal getSaldo() {
         return saldo;
     }

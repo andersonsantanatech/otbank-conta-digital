@@ -1,4 +1,4 @@
-package br.zup.com.otbank.creditar;
+package br.zup.com.otbank;
 
 import br.zup.com.otbank.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
