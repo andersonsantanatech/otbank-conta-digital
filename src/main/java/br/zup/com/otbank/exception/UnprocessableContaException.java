@@ -1,13 +1,11 @@
 package br.zup.com.otbank.exception;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ContaNotFoundException extends RuntimeException{
-
-    public ContaNotFoundException(String message) {
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+public class UnprocessableContaException extends RuntimeException {
+    public UnprocessableContaException(String message) {
         super(message);
     }
 }

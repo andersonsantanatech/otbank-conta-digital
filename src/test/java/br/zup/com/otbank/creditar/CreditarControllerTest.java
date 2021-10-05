@@ -83,4 +83,21 @@ class CreditarControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+    @Test
+    public void deveRetornarUnprocessableConta() throws Exception {
+        var idClient = UUID.randomUUID();
+        var idClient2 = UUID.randomUUID();
+        CreditarRequest request = new CreditarRequest("123456-7", idClient2.toString(), new BigDecimal("15.00"));
+        repository.save(new Conta("123456-7", idClient, new BigDecimal("100.00")));
+
+        URI uri = new URI("/api/v1/creditar");
+        Gson gson = new Gson();
+        String json = gson.toJson(request);
+
+        mvc.perform(
+                        put(uri).content(json)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity());
+    }
+
 }

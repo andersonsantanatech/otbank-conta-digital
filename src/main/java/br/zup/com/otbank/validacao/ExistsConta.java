@@ -1,4 +1,4 @@
-package br.zup.com.otbank.creditar;
+package br.zup.com.otbank.validacao;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

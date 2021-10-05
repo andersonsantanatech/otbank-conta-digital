@@ -1,8 +1,10 @@
-package br.zup.com.otbank.creditar;
+package br.zup.com.otbank.validacao;
 
-import br.zup.com.otbank.creditar.exception.UnprocessableContaException;
+import br.zup.com.otbank.creditar.ContaRepository;
+import br.zup.com.otbank.creditar.CreditarRequest;
+import br.zup.com.otbank.exception.UnprocessableContaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import br.zup.com.otbank.creditar.exception.ContaNotFoundException;
+import br.zup.com.otbank.exception.ContaNotFoundException;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

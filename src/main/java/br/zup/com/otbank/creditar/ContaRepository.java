@@ -5,10 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
     Optional<Conta> findByNumeroConta(String numeroConta);
-    Boolean existsByNumeroConta(String numeroConta);
+
+    Boolean existsByNumeroContaAndIdCliente(String numeroConta, UUID idCliente);
+
+    boolean existsByNumeroConta(String numeroConta);
 }
