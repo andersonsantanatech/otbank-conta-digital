@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  postgres-compose:
+  postgres-conta-digital:
     image: 'postgres:alpine'
     environment:
       POSTGRES_USER: postgres
@@ -11,7 +11,19 @@ services:
       - "15433:5432"
     volumes:
       - contadigital-volume:/var/lib/postgresql/data
-      #- C:/Users/lucas.castro/Documents/workspace-micronout/data:/var/lib/postgresql/data
+    networks:
+      - bank-compose-network
+
+  postgres-extrato:
+    image: 'postgres:alpine'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123dojo"
+      POSTGRES_DB: extrato
+    ports:
+      - "15434:5432"
+    volumes:
+      - extrato-volume:/var/lib/postgresql/data
     networks:
       - bank-compose-network
 
@@ -21,6 +33,9 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_SYNC_LIMIT: 2
+    networks:
+      - bank-compose-network
+
 
   kafka:
     image: "confluentinc/cp-kafka:5.2.1"
@@ -44,3 +59,4 @@ networks:
 
 volumes:
   contadigital-volume:
+  extrato-volume:

@@ -7,15 +7,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @ExistsConta
 public class TransacaoRequest {
 
     @NotBlank
-    protected String numeroConta;
+    private String numeroConta;
 
     @NotBlank
-    protected String idCliente;
+    private String idCliente;
 
     @NotNull
     @Positive
