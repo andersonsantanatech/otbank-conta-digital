@@ -2,8 +2,11 @@ package br.zup.com.otbank.debitar;
 
 import br.zup.com.otbank.Conta;
 import br.zup.com.otbank.ContaRepository;
+import br.zup.com.otbank.transacao.TipoTransacao;
+import br.zup.com.otbank.transacao.TransacaoRequest;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +50,10 @@ class DebitarControllerTest {
 
         var idClient = UUID.randomUUID();
 
-        DebitarRequest request = new DebitarRequest("123456-7", idClient.toString(), new BigDecimal("15.00"));
+        TransacaoRequest request = new TransacaoRequest("123456-7", idClient.toString(), new BigDecimal("15.00"), TipoTransacao.DEBITO);
         repository.save(new Conta("123456-7", idClient, new BigDecimal("100.00")));
 
-        URI uri = new URI("/api/v1/debitar");
+        URI uri = new URI("/api/v1/transacoes");
         Gson gson = new Gson();
         String json = gson.toJson(request);
 
@@ -58,6 +61,9 @@ class DebitarControllerTest {
                 put(uri).content(json)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+
+        Assertions.assertTrue(repository.findByNumeroConta("123456-7").isPresent());
+        Assertions.assertEquals(new BigDecimal("85.00"), repository.findByNumeroConta("123456-7").get().getSaldo());
     }
 
     @Test
@@ -65,10 +71,10 @@ class DebitarControllerTest {
 
         var idClient = UUID.randomUUID();
 
-        DebitarRequest request = new DebitarRequest("123456-0", idClient.toString(), new BigDecimal("15.00"));
+        TransacaoRequest request = new TransacaoRequest("123456-0", idClient.toString(), new BigDecimal("15.00"), TipoTransacao.DEBITO);
         repository.save(new Conta("123456-7", idClient, new BigDecimal("100.00")));
 
-        URI uri = new URI("/api/v1/debitar");
+        URI uri = new URI("/api/v1/transacoes");
         Gson gson = new Gson();
         String json = gson.toJson(request);
 
@@ -84,10 +90,10 @@ class DebitarControllerTest {
         var idClient = UUID.randomUUID();
         var idClient2 = UUID.randomUUID();
 
-        DebitarRequest request = new DebitarRequest("123456-7", idClient2.toString(), new BigDecimal("15.00"));
+        TransacaoRequest request = new TransacaoRequest("123456-7", idClient2.toString(), new BigDecimal("15.00"), TipoTransacao.DEBITO);
         repository.save(new Conta("123456-7", idClient, new BigDecimal("100.00")));
 
-        URI uri = new URI("/api/v1/debitar");
+        URI uri = new URI("/api/v1/transacoes");
         Gson gson = new Gson();
         String json = gson.toJson(request);
 
